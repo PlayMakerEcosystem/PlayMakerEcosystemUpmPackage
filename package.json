@@ -1,0 +1,20 @@
+{
+    "name": "HutongGames.PlayMakerEditor.Addons.Ecosystem",
+    "version": "0.7",
+    "displayName": "PlayMaker Ecosystem",
+    "description": "the PlayMaker Ecosystem Browser to search and download Custom Actions, packages and Samples",
+    "unity": "2018.4",
+    "keywords": [
+        "playmaker",
+        "visual",
+        "scripting",
+        "ecosystem",
+        "Community"
+    ],
+    "author": {
+        "name": "Jean Fabre",
+        "email": "jean@hutonggames.com",
+        "url": "https://hutonggames.com/playmakerforum/index.php?action=profile;u=33"
+    },
+    "category": "PlayMaker"
+}
