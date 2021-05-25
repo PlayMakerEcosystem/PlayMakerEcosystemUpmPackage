@@ -167,21 +167,7 @@ namespace HutongGames.PlayMakerEditor.Addons.Ecosystem
 
         public static EcosystemBrowser Instance;
 
-#if UNITY_EDITOR_OSX
-        [MenuItem("PlayMaker/Addons/Ecosystem/TouchBar/Ecosystem Browser Toggle %&e", false, 1000)]
-        static void ToggleWindow()
-        {
-            if (Instance != null)
-            {
-                Instance.Close();
-                return;
-            }
-
-            Init();
-        }
-#endif
-        
-        [MenuItem("Tools/PlayMaker/Addons/Ecosystem/Ecosystem Browser &e", false, 1000)]
+        [MenuItem("Tools/PlayMaker/Ecosystem Browser &e")]
         static void Init()
         {
             //Debug.Log("################ Init");
