@@ -181,7 +181,7 @@ namespace HutongGames.PlayMakerEditor.Addons.Ecosystem
         }
 #endif
         
-        [MenuItem("PlayMaker/Addons/Ecosystem/Ecosystem Browser &e", false, 1000)]
+        [MenuItem("Tools/PlayMaker/Addons/Ecosystem/Ecosystem Browser &e", false, 1000)]
         static void Init()
         {
             //Debug.Log("################ Init");
