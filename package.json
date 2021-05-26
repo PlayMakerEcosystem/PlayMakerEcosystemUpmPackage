@@ -1,9 +1,9 @@
 {
     "name": "com.hutonggames.playmakereditor.addons.ecosystem",
-    "version": "0.7.1",
+    "version": "0.7.0",
     "displayName": "PlayMaker Ecosystem",
     "description": "the PlayMaker Ecosystem Browser to search and download Custom Actions, packages and Samples",
-    "unity": "2018.4",
+    "unity": "2019.4",
     "keywords": [
         "playmaker",
         "visual",
