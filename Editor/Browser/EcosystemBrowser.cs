@@ -183,14 +183,20 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
         [MenuItem("PlayMaker/Addons/Ecosystem/Ecosystem Browser &e", false, 1000)]
         static void Init()
         {
-            string _pathtoSelf = AssetDatabase.GetAssetPath(MonoScript.FromScriptableObject(Instance));
+            // Get existing open window or if none, make a new one:
+            Instance = (EcosystemBrowser) EditorWindow.GetWindow(typeof(EcosystemBrowser));
             
+            string _pathtoSelf = AssetDatabase.GetAssetPath(MonoScript.FromScriptableObject(Instance));
+
+            if (string.IsNullOrEmpty(_pathtoSelf))
+            {
+               // _pathtoSelf = 
+            }
             Debug.Log("################ Init: "+_pathtoSelf);
 
             RefreshDisclaimerPref();
 
-            // Get existing open window or if none, make a new one:
-            Instance = (EcosystemBrowser) EditorWindow.GetWindow(typeof(EcosystemBrowser));
+            
 
             Instance.position = new Rect(100, 100, 430, 600);
             Instance.minSize = new Vector2(430, 600);
