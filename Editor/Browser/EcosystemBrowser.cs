@@ -183,7 +183,9 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
         [MenuItem("PlayMaker/Addons/Ecosystem/Ecosystem Browser &e", false, 1000)]
         static void Init()
         {
-            //Debug.Log("################ Init");
+            string _pathtoSelf = AssetDatabase.GetAssetPath(MonoScript.FromScriptableObject(Instance));
+            
+            Debug.Log("################ Init: "+_pathtoSelf);
 
             RefreshDisclaimerPref();
 
@@ -198,16 +200,19 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
             string _ecosystemSkinPath = "";
             GUISkin _ecosystemSkin = MyUtils.GetGuiSkin("PlayMakerEcosystemGuiSkin", out _ecosystemSkinPath);
 
-            Texture _iconTexture =
-                _ecosystemSkin.FindStyle("Ecosystem Logo Embossed @12px").normal.background as Texture;
+            if (_ecosystemSkin != null)
+            {
+                Texture _iconTexture =
+                    _ecosystemSkin.FindStyle("Ecosystem Logo Embossed @12px").normal.background as Texture;
 
-            Instance.titleContent = new GUIContent("Ecosystem", _iconTexture, "The Ecosystem Browser");
+                Instance.titleContent = new GUIContent("Ecosystem", _iconTexture, "The Ecosystem Browser");
 #endif
+            }
 
             // init static vars
             PlayMakerEcosystemFiltersLength = Enum.GetNames(typeof(PlayMakerEcosystemFilters)).Length;
 
-            string _pathtoSelf = AssetDatabase.GetAssetPath(MonoScript.FromScriptableObject(Instance));
+            
             PathToVersionInfoSource = _pathtoSelf.Replace("EcosystemBrowser.cs", "VersionInfo.json");
         }
 
@@ -687,9 +692,11 @@ In doubt, do not use this and get in touch with us to learn more before you work
             if (editorSkin == null)
             {
                 editorSkin = MyUtils.GetGuiSkin("VolcanicGuiSkin", out editorSkinPath);
-                bg = (Texture2D) (AssetDatabase.LoadAssetAtPath(editorSkinPath + "images/bg.png",
-                    typeof(Texture2D))); // Get the texture manually as we have some trickes for bg tiling
-
+                if (editorSkin != null)
+                {
+                    bg = (Texture2D) (AssetDatabase.LoadAssetAtPath(editorSkinPath + "images/bg.png",
+                        typeof(Texture2D))); // Get the texture manually as we have some trickes for bg tiling
+                }
                 //GUIStyleArrowInBuildSettings = editorSkin.FindStyle("Help Arrow 90 degree");
             }
 
@@ -706,23 +713,13 @@ In doubt, do not use this and get in touch with us to learn more before you work
             }
 
             // init cached content
-            Texture _youtubeTexture = editorSkin.FindStyle("YouTube Play Icon").normal.background as Texture;
+            if (editorSkin != null)
+            {
+                Texture _youtubeTexture = editorSkin.FindStyle("YouTube Play Icon").normal.background as Texture;
+         
 
             _youtubeWatchVideoButtonGuiContent = new GUIContent(" Watch Video", _youtubeTexture);
             _youtubeQuickIntroGUIContent = new GUIContent(" Quick Intro", _youtubeTexture);
-
-            // set up the Ecosystem skin if not done yet.
-            if (EcosystemSkin == null)
-            {
-                string _PlayMakerEcosystemGuiSkinPath = string.Empty;
-                EcosystemSkin = MyUtils.GetGuiSkin("PlayMakerEcosystemGuiSkin", out _PlayMakerEcosystemGuiSkinPath);
-                /*
-                Texture _sniptLogoTexture = EcosystemSkin.FindStyle("Snipt Logo").normal.background as Texture;
-                _sniptLogoGuiContent = new GUIContent(_sniptLogoTexture);
-
-                Texture _githubLogoTexture = EcosystemSkin.FindStyle("Github Logo").normal.background as Texture;
-                _githubLogoGuiContent = new GUIContent(_githubLogoTexture);
-                */
             }
         }
 
@@ -1262,28 +1259,6 @@ In doubt, do not use this and get in touch with us to learn more before you work
                 _last.y += 9;
                 GUI.Label(_last, GUIContent.none, "Search Empty Tip");
             }
-
-
-            /* it's buggy with the EditorGUILayout.textField not clearing if you force the string to be empty...
-                    if (!string.IsNullOrEmpty(searchString))
-                    {
-                        
-
-                        GUILayout.BeginVertical(GUILayout.Width(21));
-                            GUILayout.FlexibleSpace();
-                            
-                            if ( GUILayout.Button(new GUIContent(GUI.skin.FindStyle("Cross Icon").normal.background),"Button Round Small")  )
-                            {
-                                searchString = "";
-                            //	GUIUtility.keyboardControl = 0;
-                                //resetSearchFieldFlag = true;
-                                //GUIUtility.ExitGUI();
-                            }
-                            GUILayout.FlexibleSpace();
-                        GUILayout.EndVertical();
-                        
-                    }	
-                */
             GUILayout.EndHorizontal();
 
 
