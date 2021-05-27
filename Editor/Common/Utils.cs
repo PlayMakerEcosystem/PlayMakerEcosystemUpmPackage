@@ -139,15 +139,17 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
 			return _classFound;
 		}
 
-		public static GUISkin GetGuiSkin(string guiSkinName)
+		public static GUISkin GetGuiSkin(string guiSkinName,string root)
 		{
 			string path = "";
-			return GetGuiSkin(guiSkinName,out path);
+			return GetGuiSkin(guiSkinName,root,out path);
 		}
 		
-		public static GUISkin GetGuiSkin(string guiSkinName,out string assetPath)
+		public static GUISkin GetGuiSkin(string guiSkinName,string root,out string assetPath)
 		{
-			DirectoryInfo _dataPath = new DirectoryInfo(Application.dataPath);
+			Debug.Log("GetGuiSkin for "+guiSkinName);
+			
+			DirectoryInfo _dataPath = new DirectoryInfo(root);
 
 			string _dataPathFullName = _dataPath.FullName;
 

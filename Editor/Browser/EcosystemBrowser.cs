@@ -162,6 +162,10 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
 
         private bool isCompiling;
 
+        /// <summary>
+        /// either the Application DataPath or the Package path
+        /// </summary>
+        public string RootPath;
         #endregion
 
         public static EcosystemBrowser Instance;
@@ -188,23 +192,22 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
             
             string _pathtoSelf = AssetDatabase.GetAssetPath(MonoScript.FromScriptableObject(Instance));
 
-            if (string.IsNullOrEmpty(_pathtoSelf))
+            Instance.RootPath = Application.dataPath;
+            if (_pathtoSelf.StartsWith("Packages"))
             {
-               // _pathtoSelf = 
+                Instance.RootPath = "Packages/com.hutonggames.playmakereditor.addons.ecosystem";
             }
-            Debug.Log("################ Init: "+_pathtoSelf);
+            Debug.Log("################ Init with root:"+Instance.RootPath);
 
             RefreshDisclaimerPref();
-
             
-
             Instance.position = new Rect(100, 100, 430, 600);
             Instance.minSize = new Vector2(430, 600);
 #if UNITY_4_3 || UNITY_4_4 || UNITY_4_5 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7 || UNITY_5_0
 			Instance.title = "Ecosystem";
 #else
             string _ecosystemSkinPath = "";
-            GUISkin _ecosystemSkin = MyUtils.GetGuiSkin("PlayMakerEcosystemGuiSkin", out _ecosystemSkinPath);
+            GUISkin _ecosystemSkin = MyUtils.GetGuiSkin("PlayMakerEcosystemGuiSkin",Instance.RootPath, out _ecosystemSkinPath);
 
             if (_ecosystemSkin != null)
             {
@@ -213,6 +216,10 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
 
                 Instance.titleContent = new GUIContent("Ecosystem", _iconTexture, "The Ecosystem Browser");
 #endif
+            }
+            else
+            {
+                Debug.Log("_ecosystemSkin is null");
             }
 
             // init static vars
@@ -697,7 +704,7 @@ In doubt, do not use this and get in touch with us to learn more before you work
             // set up the skin if not done yet.
             if (editorSkin == null)
             {
-                editorSkin = MyUtils.GetGuiSkin("VolcanicGuiSkin", out editorSkinPath);
+                editorSkin = MyUtils.GetGuiSkin("VolcanicGuiSkin",RootPath, out editorSkinPath);
                 if (editorSkin != null)
                 {
                     bg = (Texture2D) (AssetDatabase.LoadAssetAtPath(editorSkinPath + "images/bg.png",

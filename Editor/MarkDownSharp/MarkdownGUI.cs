@@ -142,7 +142,7 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem.markdownsharp
 		{
 			if (_markdownSkin==null) 
 			{
-				_markdownSkin = Utils.GetGuiSkin(__guiSkinName__);
+				_markdownSkin = Utils.GetGuiSkin(__guiSkinName__,EcosystemBrowser.Instance.RootPath);
 			}
 
 			if(Event.current.type == EventType.MouseDown && Event.current.button == 0) {					
