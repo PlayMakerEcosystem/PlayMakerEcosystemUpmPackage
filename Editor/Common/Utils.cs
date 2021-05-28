@@ -177,8 +177,8 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
 				
 				// split after the domain+"@"
 				string _file = allFiles[0];
-				string _cachePath = _file.Substring(_file.LastIndexOf("com.hutonggames.playmakereditor.addons.ecosystem@") + 11 + 49);
-				string _subPath = _cachePath.Substring(_file.IndexOf("/") );
+				string _cachePath = _file.Substring(_file.LastIndexOf("com.hutonggames.playmakereditor.addons.ecosystem@") + 49);
+				string _subPath = _cachePath.Substring(_file.IndexOf("/")+1);
 				fullPath = "Packages/com.hutonggames.playmakereditor.addons.ecosystem"+_subPath;
 				
 				//fullPath = "Packages/com.hutonggames.playmakereditor.addons.ecosystem"+  allFiles[0].Substring(allFiles[0].LastIndexOf("com.hutonggames.playmakereditor.addons.ecosystem")+11+48);
