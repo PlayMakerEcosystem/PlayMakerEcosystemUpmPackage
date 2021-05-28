@@ -197,7 +197,7 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
             {
                 Instance.RootPath = "Packages/com.hutonggames.playmakereditor.addons.ecosystem";
             }
-            Debug.Log("################ Init with root:"+Instance.RootPath);
+      //      Debug.Log("################ Init with root:"+Instance.RootPath);
 
             RefreshDisclaimerPref();
             
@@ -207,19 +207,19 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
 			Instance.title = "Ecosystem";
 #else
             string _ecosystemSkinPath = "";
-            GUISkin _ecosystemSkin = MyUtils.GetGuiSkin("PlayMakerEcosystemGuiSkin",Instance.RootPath, out _ecosystemSkinPath);
+            Instance.EcosystemSkin = MyUtils.GetGuiSkin("PlayMakerEcosystemGuiSkin",Instance.RootPath, out _ecosystemSkinPath);
 
-            if (_ecosystemSkin != null)
+            if (Instance.EcosystemSkin != null)
             {
                 Texture _iconTexture =
-                    _ecosystemSkin.FindStyle("Ecosystem Logo Embossed @12px").normal.background as Texture;
+                    Instance.EcosystemSkin.FindStyle("Ecosystem Logo Embossed @12px").normal.background as Texture;
 
                 Instance.titleContent = new GUIContent("Ecosystem", _iconTexture, "The Ecosystem Browser");
 #endif
             }
             else
             {
-                Debug.Log("_ecosystemSkin is null");
+                Debug.Log("EcosystemSkin is null");
             }
 
             // init static vars
@@ -325,6 +325,7 @@ In doubt, do not use this and get in touch with us to learn more before you work
 
             GUILayout.FlexibleSpace();
             GUILayout.EndHorizontal();
+            
             GUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
             GUISkin _currentSkin = GUI.skin;
