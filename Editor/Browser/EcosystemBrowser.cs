@@ -98,8 +98,7 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
         string selectedAction;
 
         Hashtable searchResultHash;
-
-
+        
         Item[] resultItems;
 
         Dictionary<string, string> downloadsLUT;
@@ -123,8 +122,6 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
         private string _lastError;
 
         //	private RssReader rssFeed; // maybe twitter actually...
-
-
         #region Editor window Public properties
 
         /// <summary>
@@ -198,8 +195,7 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
                 Instance.RootPath = "Packages/com.hutonggames.playmakereditor.addons.ecosystem";
             }
       //      Debug.Log("################ Init with root:"+Instance.RootPath);
-
-            RefreshDisclaimerPref();
+      RefreshDisclaimerPref();
             
             Instance.position = new Rect(100, 100, 430, 600);
             Instance.minSize = new Vector2(430, 600);
