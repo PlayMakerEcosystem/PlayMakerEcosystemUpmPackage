@@ -147,7 +147,7 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
 		
 		public static GUISkin GetGuiSkin(string guiSkinName,string root,out string assetPath)
 		{
-			Debug.Log("GetGuiSkin for "+guiSkinName);
+		//	Debug.Log("GetGuiSkin for "+guiSkinName);
 
 			string _path;
 			
@@ -168,7 +168,7 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
 			}
 	
 
-			Debug.Log("Path for item 0:"+allFiles[0]);
+		//	Debug.Log("Path for item 0:"+allFiles[0]);
 			string fullPath;
 			if (root.StartsWith("Package"))
 			{
@@ -178,7 +178,9 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
 				// split after the domain+"@"
 				string _file = allFiles[0];
 				string _cachePath = _file.Substring(_file.LastIndexOf("com.hutonggames.playmakereditor.addons.ecosystem@") + 49);
-				string _subPath = _cachePath.Substring(_file.IndexOf("/")+1);
+			//	Debug.Log("_cachePath:"+_cachePath);
+				string _subPath = _cachePath.Substring(_cachePath.IndexOf("/"));
+			//	Debug.Log("_subPath:"+_subPath);
 				fullPath = "Packages/com.hutonggames.playmakereditor.addons.ecosystem"+_subPath;
 				
 				//fullPath = "Packages/com.hutonggames.playmakereditor.addons.ecosystem"+  allFiles[0].Substring(allFiles[0].LastIndexOf("com.hutonggames.playmakereditor.addons.ecosystem")+11+48);
@@ -189,7 +191,7 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
 			}
 			
 			
-			Debug.Log(fullPath);
+		//	Debug.Log(fullPath);
 			GUISkin _skin = (GUISkin)AssetDatabase.LoadAssetAtPath(fullPath,typeof(GUISkin));
 			
 			if (_skin==null || !_skin.name.Equals(guiSkinName))
@@ -200,7 +202,7 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
 			}
 
 			assetPath = fullPath.Substring(0,fullPath.Length - (guiSkinName+".guiskin").Length);
-			Debug.Log(assetPath);
+		//	Debug.Log(assetPath);
 
 			return _skin;
 		}
