@@ -172,7 +172,16 @@ namespace com.hutonggames.playmakereditor.addons.ecosystem
 			string fullPath;
 			if (root.StartsWith("Package"))
 			{
-				fullPath = "Packages/com.hutonggames.playmakereditor.addons.ecosystem"+  allFiles[0].Substring(allFiles[0].LastIndexOf("com.hutonggames.playmakereditor.addons.ecosystem")+11+48);
+				// /Users/jeanfabre/Documents/Work/PlayMaker/Temp/Packager_test_2019/Library/PackageCache/
+				// com.hutonggames.playmakereditor.addons.ecosystem@6082523372/Editor/Browser/EditorResources/Skin/PlayMakerEcosystemGuiSkin.guiskin
+				
+				// split after the domain+"@"
+				string _file = allFiles[0];
+				string _cachePath = _file.Substring(_file.LastIndexOf("com.hutonggames.playmakereditor.addons.ecosystem@") + 11 + 49);
+				string _subPath = _file.Substring(_file.IndexOf("/") + 1);
+				fullPath = "Packages/com.hutonggames.playmakereditor.addons.ecosystem"+_subPath;
+				
+				//fullPath = "Packages/com.hutonggames.playmakereditor.addons.ecosystem"+  allFiles[0].Substring(allFiles[0].LastIndexOf("com.hutonggames.playmakereditor.addons.ecosystem")+11+48);
 			}
 			else
 			{
